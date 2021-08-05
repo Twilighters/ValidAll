@@ -1,16 +1,42 @@
-# This is a sample Python script.
+from json.decoder import JSONDecodeError
+import logging
+import json
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+log = logging.getLogger(__name__)
 
+class InputError(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(message)
+    def __str__(self):
+        return f'ошибка: {self.message}'
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+class MoveError(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(message)
+    def __str__(self):
+        return f'ошибка : {self.message}'
 
+def check_move(matrix, move):
+    return True
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def check_input(move):
+    return False
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+def checkmoving(_input):
+    try:
+        matrix = 0
+        Command = json.loads(_input)
+        if not check_input(Command):
+            raise InputError("сработала ошибка")
+        if not check_move(matrix, Command):
+            raise MoveError("сработала вторая ошибка")
+    except JSONDecodeError as err:
+        log.error("Ошибка импорта")
+    except InputError as err:
+        log.error(f"Ошибка ввода {err}")
+    except MoveError as err:
+        log.error("Предел карты превышен")
+
+checkmoving("{}")
