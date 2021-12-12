@@ -1,0 +1,33 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1628629572.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "Minuend",
+    "Subtrahend"
+  ],
+  "properties": {
+    "Minuend": {
+      "$id": "#root/Minuend",
+      "title": "Minuend",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "12"
+      ],
+      "pattern": "^.*$"
+    },
+    "Subtrahend": {
+      "$id": "#root/Subtrahend",
+      "title": "Subtrahend",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "2"
+      ],
+      "pattern": "^.*$"
+    }
+  }
+}
